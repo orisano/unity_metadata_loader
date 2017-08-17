@@ -1,9 +1,12 @@
-#include <bits/stdc++.h>
+#include <fstream>
+#include <ios>
+#include <cstdlib>
+#include <map>
+#include <string>
+#include <algorithm>
 #include <il2cpp-metadata.h>
 #include <vm/String.h>
 #include <vm/MetadataCache.h>
-
-using namespace std;
 
 template<typename T>
 T* fromAddr(void *base, size_t offset) {
@@ -11,10 +14,19 @@ T* fromAddr(void *base, size_t offset) {
 }
 
 int main() {
-    ifstream metadata_file("./global-metadata.dat", ios::binary | ios::ate);
+    using std::ifstream;
+    using std::ofstream;
+    using std::endl;
+    using std::string;
+    using std::map;
+    using std::remove;
+    using std::malloc;
+    using std::free;
+    
+    ifstream metadata_file("./global-metadata.dat", std::ios::binary | std::ios::ate);
 
     size_t metadata_size = metadata_file.tellg();
-    metadata_file.seekg(0, ios::beg);
+    metadata_file.seekg(0, std::ios::beg);
 
     char* metadata = static_cast<char*>(malloc(metadata_size + 1u));
     metadata_file.read(metadata, metadata_size);
@@ -87,6 +99,5 @@ int main() {
             ofs << it->second << endl;
         }
     }
-
     free(metadata);
 }
