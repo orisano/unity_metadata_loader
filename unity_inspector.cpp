@@ -1,9 +1,10 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cstdlib>
+#include <fstream>
+#include <string>
 #include <il2cpp-metadata.h>
 #include <vm/String.h>
 #include <vm/MetadataCache.h>
-
-using namespace std;
 
 template<typename T>
 T* fromAddr(void *base, size_t offset) {
@@ -11,6 +12,16 @@ T* fromAddr(void *base, size_t offset) {
 }
 
 int main(int argc, char **argv) {
+    using std::cerr;
+    using std::cout;
+    using std::hex;
+    using std::endl;
+    using std::atoi;
+    using std::ifstream;
+    using std::string;
+    using std::malloc;
+    using std::free;
+    
     if (argc == 1) {
         cerr << "too few arguments" << endl;
         cerr << "Usage: inspector [type_index]" << endl;
@@ -18,10 +29,10 @@ int main(int argc, char **argv) {
     }
     int type_index = atoi(argv[1]);
 
-    ifstream metadata_file("./global-metadata.dat", ios::binary | ios::ate);
+    ifstream metadata_file("./global-metadata.dat", std::ios::binary | std::ios::ate);
 
     size_t metadata_size = metadata_file.tellg();
-    metadata_file.seekg(0, ios::beg);
+    metadata_file.seekg(0, std::ios::beg);
 
     char* metadata = static_cast<char*>(malloc(metadata_size + 1u));
     metadata_file.read(metadata, metadata_size);
