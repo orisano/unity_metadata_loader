@@ -1,10 +1,10 @@
 #include <idc.idc>
 
 static IsSubFollowing(addr) {
-    auto i;
+    auto i, pAddr;
     i = 0;
     while (i < 20) {
-        auto pAddr = Dword(addr);
+        pAddr = Dword(addr) & 0xFFFFFFFFFE;
         if (!isCode(GetFlags(pAddr))) {
             return 0;
         }
@@ -50,7 +50,7 @@ static loadMethods(ea) {
     i = 0;
     while (i < mh_size) {
         name = readLine(mh);
-        addr = Dword(ea);
+        addr = Dword(ea) & 0xFFFFFFFFFE;
         MakeNameEx(addr, name, SN_NOWARN);
         ea = ea + 4;
         i = i + 1;
