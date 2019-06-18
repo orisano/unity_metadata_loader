@@ -22,3 +22,6 @@ https://github.com/nevermoe/unity_metadata_loader を書き直したものです
 g++ -std=c++17 -I/path/to/libil2cpp/include unity_decoder.cpp -o unity_decoder
 g++ -std=c++17 -I/path/to/libil2cpp/include unity_inspector.cpp -o unity_inspector
 ```
+
+## License
+MIT
