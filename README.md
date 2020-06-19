@@ -24,7 +24,7 @@ g++ -std=c++17 -I/path/to/libil2cpp/include unity_inspector.cpp -o unity_inspect
 ```
 
 ## Author
-Nao YONASHIRO (@orisano)
+Nao Yonashiro (@orisano)
 
 ## License
 MIT
